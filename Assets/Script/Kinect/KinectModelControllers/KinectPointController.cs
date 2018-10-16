@@ -81,8 +81,6 @@ public class KinectPointController : MonoBehaviour {
 	public BoneMask Mask = BoneMask.All;
 	
 	public float scale = 1.0f;
-
-    public bool isTracked = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -100,26 +98,19 @@ public class KinectPointController : MonoBehaviour {
 	void Update () {
 		if(player == -1)
 			return;
-        //update all of the bones positions
-        if (sw.pollSkeleton())
-        {
-            isTracked = true;
-            for (int ii = 0; ii < (int)Kinect.NuiSkeletonPositionIndex.Count; ii++)
-            {
-                //_bonePos[ii] = sw.getBonePos(ii);
-                if (((uint)Mask & (uint)(1 << ii)) > 0)
-                {
-                    //_bones[ii].transform.localPosition = sw.bonePos[player,ii];
-                    _bones[ii].transform.localPosition = new Vector3(
-                        sw.bonePos[player, ii].x * scale,
-                        sw.bonePos[player, ii].y * scale,
-                        sw.bonePos[player, ii].z * scale);
-                }
-            }
-        }
-        else
-        {
-            isTracked = false;
-        }
-    }
+		//update all of the bones positions
+		if (sw.pollSkeleton())
+		{
+			for( int ii = 0; ii < (int)Kinect.NuiSkeletonPositionIndex.Count; ii++) {
+				//_bonePos[ii] = sw.getBonePos(ii);
+				if( ((uint)Mask & (uint)(1 << ii) ) > 0 ){
+					//_bones[ii].transform.localPosition = sw.bonePos[player,ii];
+					_bones[ii].transform.localPosition = new Vector3(
+						sw.bonePos[player,ii].x * scale,
+						sw.bonePos[player,ii].y * scale,
+						sw.bonePos[player,ii].z * scale);
+				}
+			}
+		}
+	}
 }

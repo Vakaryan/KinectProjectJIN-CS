@@ -1442,6 +1442,7 @@ MonoBehaviour:
   player: 0
   Mask: 1048575
   scale: 1
+  isTracked: 0
 --- !u!1 &842468145
 GameObject:
   m_ObjectHideFlags: 0
