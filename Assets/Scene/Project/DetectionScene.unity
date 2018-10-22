@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -803,6 +803,7 @@ GameObject:
   - component: {fileID: 335232124}
   - component: {fileID: 335232123}
   - component: {fileID: 335232122}
+  - component: {fileID: 335232126}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -892,6 +893,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &335232126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 335232121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853dfa578ffe7654c843daa7985b6e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_texts:
+  - {fileID: 54007143}
+  - {fileID: 1098770159}
+  - {fileID: 1366442300}
+  - {fileID: 455130837}
+  - {fileID: 1873130573}
+  - {fileID: 2077063773}
+  displayTimeWhenDetected: 1.5
+  mainLoopObject: {fileID: 1239179258}
 --- !u!1 &374250096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,7 +1862,6 @@ GameObject:
   - component: {fileID: 1239179260}
   - component: {fileID: 1239179262}
   - component: {fileID: 1239179259}
-  - component: {fileID: 1239179261}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1929,7 +1949,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framesWated: 5
-  linearTolerance: 1
+  states: 0000
+  gestureNumber: 5
+  linearTolerance: 0.001
 --- !u!1 &1256002621
 GameObject:
   m_ObjectHideFlags: 0

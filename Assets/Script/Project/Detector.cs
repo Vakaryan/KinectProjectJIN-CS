@@ -9,15 +9,22 @@ public class Detector : MonoBehaviour {
     
     public Skeleton frame;
 
+    public bool[] states;
+
     Skeleton memory;
 
-    SwipeRight move;
+    SwipeRight moveSR;
+    SwipeLeft moveSL;
+    public int gestureNumber = 5; 
 
     [SerializeField]
     public float linearTolerance;
 
     private void Start()
     {
+
+        states = new bool[gestureNumber];
+
         frame = new Skeleton();
         frame.body = GetComponent<KinectPointController>().Spine.transform;
         frame.leftElbow = GetComponent<KinectPointController>().Elbow_Left.transform;
@@ -42,9 +49,15 @@ public class Detector : MonoBehaviour {
         memory.rightShoulder = new GameObject().transform;
         memory.rightWrist = new GameObject().transform;
 
-        move = new SwipeRight();
-        move.linearTolerance = linearTolerance;
-        Debug.Log("coucou");
+        moveSR = new SwipeRight();
+        moveSR.linearTolerance = linearTolerance;
+        states[0] = false;
+
+        moveSL = new SwipeLeft();
+        moveSL.linearTolerance = linearTolerance;
+        states[1] = false;
+
+
     }
 
 
@@ -52,6 +65,7 @@ public class Detector : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+
         memory.body.position += frame.body.position;
         memory.leftElbow.position += frame.leftElbow.position;
         memory.leftHand.position += frame.leftHand.position;
@@ -80,9 +94,15 @@ public class Detector : MonoBehaviour {
             memory.rightShoulder.position /= framesWated;
             memory.rightWrist.position /= framesWated;
             framecount = 0;
-            if(move.verify(memory))
+            if(moveSR.verify(memory))
             {
-                Debug.Log("Detected magle !");
+                states[0] = true;
+                Debug.Log("swipe right detected");
+            }
+            if (moveSL.verify(memory))
+            {
+                states[1] = true;
+                Debug.Log("swipe left detected");
             }
         }
 	}

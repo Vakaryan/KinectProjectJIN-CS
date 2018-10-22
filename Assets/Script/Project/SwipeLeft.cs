@@ -2,104 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeLeft : MonoBehaviour
+public class SwipeLeft : Move
 {
-    
-    private Skeleton lastPose;
-    private Skeleton currentPose;
 
-    [SerializeField]
-    private Vector3 treshold;
-    /*
-    struct States
+
+
+    public SwipeLeft()
     {
-        public bool isStarted;
-        public bool movesLeft;
-        public bool passedRange;
-        public bool movesRight;
+        states = new List<State>();
+
+        lastPose = new Skeleton();
+        lastPose.body = new GameObject().transform;
+        lastPose.leftElbow = new GameObject().transform;
+        lastPose.leftHand = new GameObject().transform;
+        lastPose.leftShoulder = new GameObject().transform;
+        lastPose.leftWrist = new GameObject().transform;
+        lastPose.neck = new GameObject().transform;
+        lastPose.rightElbow = new GameObject().transform;
+        lastPose.rightHand = new GameObject().transform;
+        lastPose.rightShoulder = new GameObject().transform;
+        lastPose.rightWrist = new GameObject().transform;
+
+        Start();
     }
-    private States states;*/
-
-    private bool[] states;
-
-    [SerializeField]
-    private Vector3 range;
 
 
 
-
-    void reinitialize()
+    // Use this for initialization
+    override protected void Start()
     {
-        foreach (bool i in states)
+        State tmp1 = new State();
+        tmp1.move = new MoveLeft();
+        tmp1.move.linearTolerance = linearTolerance;
+        states.Add(tmp1);
+        State tmp2 = new State();
+        tmp2.move = new MoveRight();
+        tmp2.move.linearTolerance = linearTolerance;
+        states.Add(tmp2);
+
+
+
+    }
+
+    public override bool verify(Skeleton currentPose)
+    {
+
+        if (states[currentState].move.verify(lastPose.rightWrist, currentPose.rightWrist))
         {
+            states[currentState].validate();
+
         }
-    }
+        if (currentState == states.Count - 1 && states[currentState].validated)
+        {
+            reinitialize();
+            return true;
+        }
+        else if (states[currentState].validated && states[currentState + 1].move.verify(lastPose.rightWrist, currentPose.rightWrist))
+        {
+            currentState++;
+        }
 
-    public bool watch(Skeleton skeletonPose)
-    {
-        currentPose = skeletonPose;
-
-        
 
 
-        lastPose = skeletonPose;
+
 
         return false;
     }
-
-    private bool movesLeft()
-    {
-        return true;
-    }
-    private bool movesLeftOnly()
-    {
-        return true;
-    }
-    private bool movesRight()
-    {
-        return true;
-    }
-    private bool movesRightOnly()
-    {
-        return true;
-    }
-    private bool movesUp()
-    {
-        return true;
-    }
-    private bool movesUpOnly()
-    {
-        return true;
-    }
-    private bool movesDown()
-    {
-        return true;
-    }
-    private bool movesDownOnly()
-    {
-        return true;
-    }
-    private bool movesForward()
-    {
-        return true;
-    }
-    private bool movesForwardOnly()
-    {
-        return true;
-    }
-    private bool movesBack()
-    {
-        return true;
-    }
-    private bool movesBackOnly()
-    {
-        return true;
-    }
-    private bool stay()
-    {
-        return true;
-    }
-
-
 
 }
