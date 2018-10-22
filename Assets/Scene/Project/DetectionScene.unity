@@ -911,7 +911,7 @@ MonoBehaviour:
   - {fileID: 455130837}
   - {fileID: 1873130573}
   - {fileID: 2077063773}
-  displayTimeWhenDetected: 1.5
+  displayTimeWhenDetected: 1
   mainLoopObject: {fileID: 1239179258}
 --- !u!1 &374250096
 GameObject:
