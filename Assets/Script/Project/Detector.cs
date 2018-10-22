@@ -18,7 +18,8 @@ public class Detector : MonoBehaviour {
     DoubleSwipeUp moveDSU;
     OnePunchMan moveOPM;
     ArmRun moveAR;
-    public int gestureNumber = 5; 
+    CustomQuitGesture moveCG;
+    public int gestureNumber = 6; 
 
     [SerializeField]
     public float linearTolerance;
@@ -69,6 +70,9 @@ public class Detector : MonoBehaviour {
 
         moveAR = new ArmRun(newLinearTolerance);
         states[4] = false;
+
+        moveCG = new CustomQuitGesture(newLinearTolerance);
+        states[5] = false;
     }
 
 
@@ -129,6 +133,11 @@ public class Detector : MonoBehaviour {
             {
                 states[4] = true;
                 Debug.Log("running detected");
+            }
+            if (moveCG.verify(memory))
+            {
+                states[5] = true;
+                Debug.Log("quiiting loser");
             }
         }
 	}

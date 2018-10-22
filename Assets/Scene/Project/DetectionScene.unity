@@ -1949,8 +1949,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framesWated: 5
-  states: 0000
-  gestureNumber: 5
+  states: 000000000000
+  gestureNumber: 6
   linearTolerance: 1
 --- !u!1 &1256002621
 GameObject:
