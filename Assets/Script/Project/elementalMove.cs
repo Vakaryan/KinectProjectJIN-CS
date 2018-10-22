@@ -6,7 +6,7 @@ public class ElementalMove
 {
 
     [SerializeField]
-    protected float linearTolerance;
+    public float linearTolerance;
 
     public virtual bool verify(Transform lastPose, Transform currentPose) { return true; }
 

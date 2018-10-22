@@ -2,33 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move : MonoBehaviour {
+public class Move {
 
-    protected struct State
+    protected class State
     {
         public ElementalMove move;
-        public float minimalDistanceX;
-        public float maximalDistanceX;
-        public float minimalDistanceY;
-        public float maximalDistanceY;
-        public float minimalDistanceZ;
-        public float maximalDistanceZ;
-        public bool validated;
-
+        public float minimalDistanceX = 0f;
+        public float maximalDistanceX = 0f;
+        public float minimalDistanceY = 0f;
+        public float maximalDistanceY = 0f;
+        public float minimalDistanceZ = 0f;
+        public float maximalDistanceZ = 0f;
+        public bool validated = false;
+        public void validate() { validated = true; }
+        public void unvalidate() { validated = false; }
     }
 
-    protected State[] states;
+    protected List<State> states; 
 
     protected int currentState = 0;
 
     protected Skeleton lastPose;
-    
 
+    public Move()
+    {
+       
+    }
 
     // Use this for initialization
     virtual protected void Start () {
-		
-	}
+
+    }
 	
 	virtual public bool verify(Skeleton currentPose)
     {
@@ -37,9 +41,9 @@ public class Move : MonoBehaviour {
 
     protected void reinitialize()
     {
-        for (int i = 0; i < states.Length; i++)
+        for (int i = 0; i < states.Count; i++)
         {
-            states[i].validated = false;
+            states[i].unvalidate();
         }
         currentState = 0;
     }
