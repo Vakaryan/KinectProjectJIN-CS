@@ -1928,6 +1928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   framesWated: 5
+  linearTolerance: 1
 --- !u!1 &1256002621
 GameObject:
   m_ObjectHideFlags: 0

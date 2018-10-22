@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Move {
 
+    public float linearTolerance;
+
     protected class State
     {
         public ElementalMove move;
@@ -23,11 +25,6 @@ public class Move {
     protected int currentState = 0;
 
     protected Skeleton lastPose;
-
-    public Move()
-    {
-       
-    }
 
     // Use this for initialization
     virtual protected void Start () {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SwipeRight : Move {
 
-    [SerializeField]
-    float linearTolerance;
 
 
     public SwipeRight()

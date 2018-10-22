@@ -13,6 +13,9 @@ public class Detector : MonoBehaviour {
 
     SwipeRight move;
 
+    [SerializeField]
+    public float linearTolerance;
+
     private void Start()
     {
         frame = new Skeleton();
@@ -40,6 +43,7 @@ public class Detector : MonoBehaviour {
         memory.rightWrist = new GameObject().transform;
 
         move = new SwipeRight();
+        move.linearTolerance = linearTolerance;
         Debug.Log("coucou");
     }
 
