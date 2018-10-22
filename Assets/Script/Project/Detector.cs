@@ -15,6 +15,9 @@ public class Detector : MonoBehaviour {
 
     SwipeRight moveSR;
     SwipeLeft moveSL;
+    DoubleSwipeUp moveDSU;
+    OnePunchMan moveOPM;
+    ArmRun moveAR;
     public int gestureNumber = 5; 
 
     [SerializeField]
@@ -49,15 +52,23 @@ public class Detector : MonoBehaviour {
         memory.rightShoulder = new GameObject().transform;
         memory.rightWrist = new GameObject().transform;
 
-        moveSR = new SwipeRight();
-        moveSR.linearTolerance = linearTolerance;
+
+        float newLinearTolerance = linearTolerance;
+
+        moveSR = new SwipeRight(newLinearTolerance);
         states[0] = false;
 
-        moveSL = new SwipeLeft();
-        moveSL.linearTolerance = linearTolerance;
+        moveSL = new SwipeLeft(newLinearTolerance);
         states[1] = false;
 
+        moveDSU = new DoubleSwipeUp(newLinearTolerance);
+        states[2] = false;
 
+        moveOPM = new OnePunchMan(newLinearTolerance);
+        states[3] = false;
+
+        moveAR = new ArmRun(newLinearTolerance);
+        states[4] = false;
     }
 
 
@@ -103,6 +114,21 @@ public class Detector : MonoBehaviour {
             {
                 states[1] = true;
                 Debug.Log("swipe left detected");
+            }
+            if (moveDSU.verify(memory))
+            {
+                states[2] = true;
+                Debug.Log("swipe up detected");
+            }
+            if (moveOPM.verify(memory))
+            {
+                states[3] = true;
+                Debug.Log("one puuuuuuuuuuuuunch");
+            }
+            if (moveAR.verify(memory))
+            {
+                states[4] = true;
+                Debug.Log("running detected");
             }
         }
 	}

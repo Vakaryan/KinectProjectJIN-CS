@@ -27,7 +27,7 @@ public class Move {
     protected Skeleton lastPose;
 
     // Use this for initialization
-    virtual protected void Start () {
+    virtual protected void Start (float newLinearTolerance) {
 
     }
 	
@@ -36,7 +36,21 @@ public class Move {
         return false;
     }
 
-    protected void reinitialize()
+    protected void UpdatePose(Skeleton currentPose)
+    {
+        lastPose.body.position = currentPose.body.position;
+        lastPose.leftElbow.position = currentPose.leftElbow.position;
+        lastPose.leftHand.position = currentPose.leftHand.position;
+        lastPose.leftShoulder.position = currentPose.leftShoulder.position;
+        lastPose.leftWrist.position = currentPose.leftWrist.position;
+        lastPose.neck.position = currentPose.neck.position;
+        lastPose.rightElbow.position = currentPose.rightElbow.position;
+        lastPose.rightHand.position = currentPose.rightHand.position;
+        lastPose.rightShoulder.position = currentPose.rightShoulder.position;
+        lastPose.rightWrist.position = currentPose.rightWrist.position;
+    }
+
+    protected virtual void reinitialize()
     {
         for (int i = 0; i < states.Count; i++)
         {

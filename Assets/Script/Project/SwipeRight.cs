@@ -6,7 +6,7 @@ public class SwipeRight : Move {
 
 
 
-    public SwipeRight()
+    public SwipeRight(float newLinearTolerance)
     {
         states = new List<State>();
 
@@ -22,21 +22,21 @@ public class SwipeRight : Move {
         lastPose.rightShoulder = new GameObject().transform;
         lastPose.rightWrist = new GameObject().transform;
 
-        Start();
+        Start(newLinearTolerance);
     }
 
 
 
     // Use this for initialization
-    override protected void Start ()
+    override protected void Start (float newLinearTolerance)
     {
         State tmp1 = new State();
         tmp1.move = new MoveRight();
-        tmp1.move.linearTolerance = linearTolerance;
+        tmp1.move.linearTolerance = newLinearTolerance;
         states.Add(tmp1);
         State tmp2 = new State();
         tmp2.move = new MoveLeft();
-        tmp2.move.linearTolerance = linearTolerance;
+        tmp2.move.linearTolerance = newLinearTolerance;
         states.Add(tmp2);
 
 
@@ -61,7 +61,7 @@ public class SwipeRight : Move {
             currentState++;
         }
 
-
+        UpdatePose(currentPose);
 
 
 
