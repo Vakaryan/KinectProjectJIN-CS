@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour {
              switch (statesTab[i])
                 {
                 case false: //nothing detected
-                   UI_texts[i].color = Color.red;
+                   UI_texts[i].color = Color.white;
                    break;
 
                  case true: //something has been detected 
