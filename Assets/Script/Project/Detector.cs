@@ -24,6 +24,10 @@ public class Detector : MonoBehaviour {
     [SerializeField]
     public float linearTolerance;
 
+    public bool isPlayerDetected;
+    private Vector3 leftHandOriginalPose;
+    private Vector3 rightHandOriginalPose;
+
     private void Start()
     {
 
@@ -73,6 +77,10 @@ public class Detector : MonoBehaviour {
 
         moveCG = new CustomQuitGesture(newLinearTolerance);
         states[5] = false;
+
+        leftHandOriginalPose = frame.leftWrist.position;
+        rightHandOriginalPose = frame.rightWrist.position;
+        isPlayerDetected = false;
     }
 
 
@@ -80,6 +88,16 @@ public class Detector : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        if(frame.leftWrist.position == leftHandOriginalPose && frame.rightWrist.position == rightHandOriginalPose)
+        {
+            isPlayerDetected = false;
+        }
+        else
+        {
+            isPlayerDetected = true;
+        }
+        Debug.Log("is player detected = " + isPlayerDetected);
+
 
         memory.body.position += frame.body.position;
         memory.leftElbow.position += frame.leftElbow.position;

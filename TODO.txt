@@ -1,5 +1,4 @@
 Meilleur détection des gestes (distance)
-Retour au menu via echap/geste custom
 Tuto geste custom
 Changer geste custom ?
 Courir avec autre chose que les coudes
