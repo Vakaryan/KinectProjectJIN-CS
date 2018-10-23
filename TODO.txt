@@ -2,3 +2,4 @@ Meilleur détection des gestes (distance)
 Tuto geste custom
 Changer geste custom ?
 Courir avec autre chose que les coudes
+Poll Skeleton -> vérifier qu'on a un squelette plutôt que mouvement main
